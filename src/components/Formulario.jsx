@@ -9,7 +9,14 @@ const Formulario = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         setTareas([...tareas, tarea])
+        setTarea("")
     }
+
+    const borrarTarea = (nombreTarea)=>{
+        let copiaTareas = tareas.filter((itemTarea)=> itemTarea !== nombreTarea);
+        setTareas(copiaTareas);
+    }
+
     return (
         <>
         <Form onSubmit={handleSubmit}>
@@ -18,7 +25,7 @@ const Formulario = () => {
                 <Button variant="primary" type="submit">Agregar</Button>
             </Form.Group>
         </Form>
-        <Lista></Lista>
+        <Lista tareas={tareas} borrarTarea={borrarTarea}></Lista>
         </>
     );
 };
